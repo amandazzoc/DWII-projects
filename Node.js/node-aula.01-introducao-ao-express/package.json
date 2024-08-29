@@ -1,0 +1,24 @@
+{
+  "name": "aula.01-introducao-ao-express",
+  "version": "1.0.0",
+  "description": "Conceitos iniciais do Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amandazzoc/DWII-projects.git"
+  },
+  "author": "Amanda Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amandazzoc/DWII-projects/issues"
+  },
+  "homepage": "https://github.com/amandazzoc/DWII-projects#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4"
+  }
+}
