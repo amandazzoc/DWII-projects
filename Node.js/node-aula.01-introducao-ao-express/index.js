@@ -10,16 +10,32 @@ app.get("/", function(req, res){
 
 // ROTA DE PERFIL
 // :nome É UM PARÂMETRO OBRIGATÓRIO
-app.get("/perfil/:nome", function(req, res){
+// :nome? É UM PARÂMETRO OPCIONAL
+app.get("/perfil/:nome?", function(req, res){
+    //coletando o parâmetro e guardando na variável
     const nome = req.params.nome
-    res.send(`<h1>Olá, ${nome}!</h1>`)
+    // verificando se o nome parâmetro existe
+    if(nome){
+        res.send(`<h1>Olá, ${nome}!</h1>`)
+    } else {
+        res.send(`<h2>Faça login para acessar o seu perfil</h2>`)
+    }
 })
 
 // ROTA DE VÍDEOS
-app.get("/videos", (req, res) => {
-    res.send("<h1>Página de vídeos</h1>")
+// :playlist? e :video? - parâmetros opcionais
+app.get("/videos/:playlist?/:video?", (req, res) => {
+    const playlist = req.params.playlist
+    const video = req.params.video
+    if(playlist && video == undefined){ // Playlist true e video não definido
+        res.send(`<h1>Você está na playlist ${playlist}</h1>`)
+    }
+    if(playlist && video){ // Playlist e video true
+        res.send(`<h1>Você está na playlist ${playlist}</h1><br>Reproduzindo o vídeo ${video}...`)
+    }else{ // Não for informado nenhum parâmetro
+        res.send(`<h1>Página de vídeos</h1>`)
+    }
 })
-
 
 // Iniciando o servidor na porta 8080
 app.listen(8080, error => {
