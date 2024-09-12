@@ -3,9 +3,11 @@
 
   <% if (!produto) { %>
   <h1>Produtos</h1>
-  <table class="table">
+  <hr class="linha-divisoria">
+  <table class="table table-striped">
     <thead>
       <tr>
+        <th scope="col">Imagem</th>
         <th scope="col">Nome do produto</th>
         <th scope="col">Preço</th>
         <th scope="col">Categoria</th>
@@ -14,6 +16,9 @@
     <tbody>
       <% listaProdutos.forEach((produto) => { %>
       <tr>
+        <td>
+          <img src="<%= produto.imagem %>" alt="<%= produto.nome %>" width="50px">
+        </td>
         <td>
           <a class="linkProduto" href="/produtos/<%= produto.id %>"> <%= produto.nome %> </a>
         </td>
@@ -24,8 +29,8 @@
     </tbody>
   </table>
   <% }else{%>
-  <div class="container container-fluid pt-4">
-    <div class="row d-flex flex-column flex-md-row">
+  <div class="container pt-4">
+    <div class="row d-flex flex-column flex-md-row pb-5">
       <div class="col col-sm-6">
         <img
           src="<%= produto.imagem %>"
@@ -37,8 +42,10 @@
         <h1 class="fw-bold"><%= produto.nome %></h1>
         <p class="fw-bold">Preço: R$<%= produto.preco %></p>
         <p><%= produto.categoria %></p>
+        <a class="btn botao" role="button" href="/pedidos">Comprar</a>
       </div>
     </div>
+      <%- include ('partials/outrosProdutos.ejs') %>
   </div>
   <% } %>
 </div>
