@@ -1,3 +1,24 @@
 <%- include ('partials/head.ejs') %>
 <%- include ('partials/navbar.ejs') %>
+<div class="container container-fluid pt-4">
+  <h1>Produtos</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome do produto</th>
+        <th scope="col">Preço</th>
+        <th scope="col">Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% listaProdutos.forEach((produto) => { %>
+        <tr>
+          <td><%= produto.nome %></td>
+          <td>R$<%= produto.preco %></td>
+          <td><%= produto.categoria %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
 <%- include ('partials/footer.ejs') %>
