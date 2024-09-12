@@ -1,6 +1,7 @@
-<%- include ('partials/head.ejs') %>
-<%- include ('partials/navbar.ejs') %>
+<%- include ('partials/head.ejs') %> <%- include ('partials/navbar.ejs') %>
 <div class="container container-fluid pt-4">
+
+  <% if (!produto) { %>
   <h1>Produtos</h1>
   <table class="table">
     <thead>
@@ -12,13 +13,33 @@
     </thead>
     <tbody>
       <% listaProdutos.forEach((produto) => { %>
-        <tr>
-          <td><%= produto.nome %></td>
-          <td>R$<%= produto.preco %></td>
-          <td><%= produto.categoria %></td>
-        </tr>
+      <tr>
+        <td>
+          <a class="linkProduto" href="/produtos/<%= produto.id %>"> <%= produto.nome %> </a>
+        </td>
+        <td>R$<%= produto.preco %></td>
+        <td><%= produto.categoria %></td>
+      </tr>
       <% }) %>
     </tbody>
   </table>
+  <% }else{%>
+  <div class="container container-fluid pt-4">
+    <div class="row d-flex flex-column flex-md-row">
+      <div class="col col-sm-6">
+        <img
+          src="<%= produto.imagem %>"
+          alt="<%= produto.nome %>"
+          class="img-fluid" width="350px"
+        />
+      </div>
+      <div class="col col-sm-6">
+        <h1 class="fw-bold"><%= produto.nome %></h1>
+        <p class="fw-bold">Preço: R$<%= produto.preco %></p>
+        <p><%= produto.categoria %></p>
+      </div>
+    </div>
+  </div>
+  <% } %>
 </div>
 <%- include ('partials/footer.ejs') %>

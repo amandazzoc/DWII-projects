@@ -9,7 +9,6 @@ app.get("/", function (req, res) {
 });
 
 app.get("/clientes", function (req, res) {
-
   const listaClientes = [
     { nome: "Amanda", cpf: "517.261.838-40", endereco: "Rua Sabiá, 80" },
     { nome: "Camila", cpf: "331.671.898-28", endereco: "Rua Sabiá, 80" },
@@ -31,59 +30,83 @@ app.get("/clientes", function (req, res) {
   ];
   res.render("clientes", {
     listaClientes: listaClientes,
-
   });
 });
 
-app.get("/produtos/:produto?", function (req, res) {
-    const produto = req.params.produto;
+app.get("/produtos/:id?", function (req, res) {
+  const produtoId = req.params.id;
   const listaProdutos = [
     {
-      imagem: "/img/produto/loção.webp",
+      id: 1,
+      imagem: "/img/produtos/locao.jpg",
       nome: "Loção Radiante Desodorante Corporal Nativa Spa Ameixa Dourada 100ml",
       preco: 15.9,
       categoria: "Nativa SPA",
     },
     {
+      id: 2,
+      imagem: "/img/produtos/botik.jpg",
       nome: "Creme Nutritivo Firmador Resveratrol E Silício 40g",
       preco: 131.92,
       categoria: "Botik",
     },
     {
+      id: 3,
+      imagem: "/img/produtos/perfume.jpg",
       nome: "African Sunrise Floral Frutal Eau De Parfum 75ml",
       preco: 169.9,
       categoria: "Botica 214",
     },
     {
+      id: 4,
+      imagem: "/img/produtos/gold.jpg",
       nome: "Gold Desodorante Colônia 75ml",
       preco: 119.9,
       categoria: "Floratta",
     },
     {
+      id: 5,
+      imagem: "/img/produtos/mascara.jpg",
       nome: "Sérum Para Cílios e Sobrancelhas Explosion Grow 5g",
-      preco: 51.90,
+      preco: 51.9,
       categoria: "Make B.",
     },
   ];
-    res.render("produtos", {
-        listaProdutos: listaProdutos,
-        produto: produto,
-    });
-  });
+  // Verifica se o ID foi especificado na rota
+  if (produtoId) {
+    // Filtra o produto pelo ID
+    const produtoEncontrado = listaProdutos.find(
+      (produto) => produto.id == produtoId
+    );
 
-app.get("/pedidos/:id?", function (req, res) {
-  const id = req.params.id;
+    // Se o produto foi encontrado, renderiza a página do produto
+    if (produtoEncontrado) {
+      return res.render("produtos", {
+        produto: produtoEncontrado,
+      });
+    } else {
+      // Se não encontrar, pode redirecionar para a lista ou mostrar uma mensagem de erro
+      return res.status(404).send("Produto não encontrado");
+    }
+  }
+
+  res.render("produtos", {
+    listaProdutos: listaProdutos,
+    produto: null,
+  });
+});
+
+app.get("/pedidos", function (req, res) {
   const listaPedidos = [
-    { numeroPedido: 1, valor: 199.90 },
-    { numeroPedido: 2, valor: 26.90 },
-    { numeroPedido: 3, valor: 144.90 },
-    { numeroPedido: 4, valor: 62.80 },
+    { numeroPedido: 1, valor: 199.9 },
+    { numeroPedido: 2, valor: 26.9 },
+    { numeroPedido: 3, valor: 144.9 },
+    { numeroPedido: 4, valor: 62.8 },
     { numeroPedido: 5, valor: 34.904 },
-    { numeroPedido: 6, valor: 124.70 },
+    { numeroPedido: 6, valor: 124.7 },
   ];
   res.render("pedidos", {
     listaPedidos: listaPedidos,
-    id: id,
   });
 });
 
