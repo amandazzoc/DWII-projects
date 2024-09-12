@@ -1,0 +1,22 @@
+<%- include('partials/navbar.ejs') %>
+<%- include ('partials/header.ejs') %>
+    <% if(!playlist) { %>
+        <h1>Bem vindo a página de videos</h1>
+        <hr>
+        <p>Escolha uma playlist: </p>
+        <% listaPlaylist.forEach((playlist) =>{ %>
+            <p><a href="/videos/<%= playlist%>"><%= playlist %></a></p>
+        <% })  %>
+    <% }else if (!video){ %>
+        <h1>Playlist <%= playlist %></h1>
+        <hr>
+        <p>Escolha um vídeo: </p>
+        <% listaVideo.forEach((video) => { %>
+            <p><a href="/videos/<%= playlist%>/<%= video%>"><%= video %></a></p>
+        <% }) %>
+    <% }else{ %>
+        <h1>Playlist <%= playlist %></h1>
+        <hr>
+        <p>Tocando o vídeo <%= video %>...</p>
+    <% } %>
+<%- include ('partials/footer.ejs') %>
