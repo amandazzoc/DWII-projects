@@ -1,0 +1,9 @@
+<%- include('partials/navbar.ejs') %>
+<%- include ('partials/header.ejs') %>
+ 
+    <% if(!nome) { %>
+        <h1>Faça login</h1>
+    <%} else { %>
+        <h1>Bem vindo <%= nome %></h1>
+    <% } %>
+<%- include ('partials/footer.ejs') %>
