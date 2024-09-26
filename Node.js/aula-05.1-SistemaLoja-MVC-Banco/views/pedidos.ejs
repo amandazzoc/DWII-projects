@@ -1,18 +1,64 @@
 <%- include ('partials/header.ejs') %>
 <%- include ('partials/navbar.ejs') %>
 
+<div class="container mb-5">
+    <div class="card">
+      <div class="card-header">
+        <h1>Cadastrar Pedido</h1>
+      </div>
+  
+      <div class="card-body">
+        <form action="/pedidos/new" method="post">
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Número</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="numero"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+            />
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Valor</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="valor"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+            />
+          </div>
+          <input
+            type="submit"
+            class="btn btn-outline-success"
+            value="Cadastrar"
+          />
+        </form>
+        <hr />
+      </div>
+    </div>
+  </div>
+
     <div class="container">
         <div class="card">
             <div class="card-header">
                 <h1>Pedidos</h1>
             </div>
             <div class="card-body">
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Número:</th>
                             <th>Valor:</th>
+                            <th colspan="2">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -21,6 +67,8 @@
                             <td><img src="imgs/order.png" width="30px"></td>
                             <td><%= pedido.numero %></td>
                             <td><%= pedido.valor.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}) %></td>
+                            <td><a href="#" class="btn btn-outline-primary">Editar</a></td>
+                            <td><a href="/pedidos/delete/<%= pedido.id %>" class="btn btn-outline-danger">Deletar</a></td>
                         </tr>
                         <% }) %>
                     </tbody>
