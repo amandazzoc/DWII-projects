@@ -1,6 +1,65 @@
 <%- include ('partials/header.ejs') %>
 <%- include ('partials/navbar.ejs') %>
 
+
+<div class="container mb-5">
+    <div class="card">
+      <div class="card-header">
+        <h1>Cadastrar Produto</h1>
+      </div>
+  
+      <div class="card-body">
+        <form action="/produtos/new" method="post">
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Nome do Produto</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="nome"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+            />
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Preço do Produto</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="preco"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+            />
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Categoria do Produto</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="categoria"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm"
+              required
+            />
+          </div>
+          <input
+            type="submit"
+            class="btn btn-outline-success"
+            value="Cadastrar"
+          />
+        </form>
+        <hr />
+      </div>
+    </div>
+  </div>
+
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -14,6 +73,7 @@
                             <th>Nome:</th>
                             <th>Preço:</th>
                             <th>Categoria:</th>
+                            <th colspan="2">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,6 +83,8 @@
                             <td><%= produto.nome %></td>
                             <td><%= produto.preco.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}) %></td>
                             <td><%= produto.categoria %></td>
+                            <td><a href="#" class="btn btn-outline-primary">Editar</a></td>
+                            <td><a href="/produtos/delete/<%= produto.id %>" class="btn btn-outline-danger">Deletar</a></td>
                         </tr>
                         <% }) %>
                     </tbody>

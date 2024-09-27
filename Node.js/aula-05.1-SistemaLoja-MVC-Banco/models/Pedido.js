@@ -3,7 +3,7 @@ import { Sequelize } from "sequelize";
 // Configuração do Sequelize
 import connection from "../config/sequelize-config.js";
 
-const Pedido = connection.define("produtos", {
+const Pedido = connection.define("pedidos", {
     numero: {
         type: Sequelize.INTEGER,
         allowNull: false,
