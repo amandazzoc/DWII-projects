@@ -40,4 +40,38 @@ router.get("/produtos/delete/:id", (req, res) => {
         console.log(error);
     })
 })
+
+// ROTA DE EDIÇÃO DE PRODUTO
+router.get("/produtos/edit/:id", (req, res) => {
+  const id = req.params.id
+  Produto.findByPk(id).then((produto) => {
+    res.render("produtoEdit", {
+      produto:produto
+    })
+  })
+})
+
+// ROTA DE ALTERAÇÂO DO PRODUTO
+router.post("/produtos/update", (req, res) => {
+  const id = req.body.id
+  const nome = req.body.nome
+  const preco = req.body.preco
+  const categoria = req.body.categoria
+  Produto.update(
+    {
+      nome: nome,
+      preco: preco,
+      categoria: categoria
+    },
+    {
+      where: {
+        id:id
+      }
+    }
+  ).then(() => {
+    res.redirect("/produtos")
+  }).catch((error) => {
+    console.log("Erro ao editar os dados: " + error);
+  })
+})
 export default router;

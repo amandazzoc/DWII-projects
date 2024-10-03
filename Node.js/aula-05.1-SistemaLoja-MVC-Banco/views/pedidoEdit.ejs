@@ -1,0 +1,51 @@
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/navbar.ejs') %>
+ 
+<div class="container mb-5">
+    <div class="card">
+      <div class="card-header">
+        <h1>Editar Pedido</h1>
+      </div>
+  
+      <div class="card-body">
+        <form action="/pedidos/update" method="post">
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Número</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="numero"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm"
+              value="<%= pedido.numero %>"
+              required
+            />
+          </div>
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Valor</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="valor"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm"
+              value="<%= pedido.valor %>"
+              required
+            />
+            <input type="hidden" name="id" value="<%= pedido.id %>" >
+          </div>
+          <input
+            type="submit"
+            class="btn btn-outline-success"
+            value="Editar"
+            onclick="return confirm('Confirma as alterações para o pedido <%= pedido.nome %>?')"
+          />
+        </form>
+        <hr />
+      </div>
+    </div>
+  </div>

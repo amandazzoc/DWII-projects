@@ -37,5 +37,35 @@ router.get("/pedidos/delete/:id", (req, res) => {
     })
 })
 
+// ROTA DE EDIÇÃO DE CLIENTE
+router.get("/pedidos/edit/:id", (req, res) => {
+  const id = req.params.id
+  Pedido.findByPk(id).then((pedido) => {
+    res.render("pedidoEdit", {
+      pedido: pedido
+    })
+  })
+})
 
+// ROTA DE ALTERAÇÃO DE CLIENTE
+router.post("/pedidos/update", (req, res) => {
+  const id = req.body.id
+  const numero = req.body.numero
+  const valor = req.body.valor
+  Pedido.update(
+    {
+      numero: numero,
+      valor: valor
+    },
+    {
+      where: {
+        id:id
+      }
+    }
+  ).then(() => {
+    res.redirect("/pedidos")
+  }).catch((error) => {
+    console.log("Erro ao editar os dados: " + error);
+  })
+})
 export default router;

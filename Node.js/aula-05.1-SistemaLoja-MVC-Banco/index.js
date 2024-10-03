@@ -40,6 +40,7 @@ app.use("/", ClientesController);
 app.use("/", ProdutosController);
 app.use("/", PedidosController);
 
+
 // ROTA PRINCIPAL
 app.get("/", function (req, res) {
   res.render("index");
